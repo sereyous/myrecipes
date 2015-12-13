@@ -1,18 +1,19 @@
 # == Schema Information
 #
-# Table name: likes
+# Table name: reviews
 #
 #  id         :integer          not null, primary key
-#  like       :boolean
 #  chef_id    :integer
 #  recipe_id  :integer
+#  title      :string(255)
+#  body       :text
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Like < ActiveRecord::Base
-  belongs_to :chef
+class Review < ActiveRecord::Base 
   belongs_to :recipe
+  belongs_to :chef 
   
   validates_uniqueness_of :chef, scope: :recipe
 end

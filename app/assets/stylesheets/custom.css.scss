@@ -111,3 +111,14 @@ span.picture {
 .show_recipe {
   margin: 10px 10px 10px 10px;
 }
+
+.recipe-review {
+  border-bottom: 2px ridge #fefefe;
+  h4 {
+    display: block;
+    margin-bottom: 0;
+  }
+  span {
+    font-size: .9em;
+  }
+}

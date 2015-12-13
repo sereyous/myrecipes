@@ -14,6 +14,11 @@
     <% if logged_in? && current_user.admin? %>
       <%= link_to "[Delete Recipe]", @recipe, method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>
+    
+    <% if logged_in? && current_user != @recipe.chef %>
+      <%= link_to "Review this recipe", new_recipe_review_path(@recipe) %>
+    <% end %>
+    
     <h3><%= @recipe.summary %></h3>
     <div class="show_recipe">
       <%= image_tag(@recipe.picture.url, class: "gravatar") if @recipe.picture? %>
@@ -41,6 +46,16 @@
         </div>
       </div>
     </div>
+    <hr />
+    <% if @recipe.reviews.any? %>
+      <% @recipe.reviews.each do |rev| %>
+      <div class='recipe-review'>
+        <h4><%= rev.title %></h4>
+        <span>By <%= link_to rev.chef.chefname, chef_path(rev.chef) %> on <%= rev.created_at.strftime('%B %d, %Y') %></span>
+        <p><%= rev.body %></p>
+      </div>
+      <% end %> 
+    <% end %>
   </div>
 </div>
 

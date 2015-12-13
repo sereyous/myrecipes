@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController 
-  before_action :set_recipe, only: [:show, :edit, :update, :like]
+  before_action :set_recipe, only: [:show, :edit, :update, :like, :review]
   before_action :require_user, except: [:show, :index, :like]
   before_action :require_user_like, only: [:like]
   before_action :require_same_user, only: [:edit, :update]
@@ -58,6 +58,9 @@ class RecipesController < ApplicationController
       flash[:danger] = "You can only like/dislike a recipe once"
       redirect_to :back
     end
+  end
+  
+  def review 
   end
   
   private 

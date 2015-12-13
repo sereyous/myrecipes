@@ -1,5 +1,18 @@
-class Recipe < ActiveRecord::Base
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  summary     :text
+#  description :text
+#  chef_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#  picture     :string(255)
+#
 
+class Recipe < ActiveRecord::Base
   # associations
   belongs_to :chef
   has_many :likes, dependent: :destroy
@@ -7,7 +20,8 @@ class Recipe < ActiveRecord::Base
   has_many :styles, through: :recipe_styles
   has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
-
+  has_many :reviews, dependent: :destroy
+  
   # validation
   validates :chef_id, presence: true
   validates :name, presence: true, length: { minimum: 5, maximum: 100 }
