@@ -18,6 +18,7 @@ class Chef < ActiveRecord::Base
   # associations
   has_many :recipes
   has_many :likes
+  has_many :reviews
   
   # validation 
   validates :chefname, presence: true, length: { minimum: 3, maximum: 40 }

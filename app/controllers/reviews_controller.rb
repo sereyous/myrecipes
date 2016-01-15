@@ -1,16 +1,16 @@
 class ReviewsController < ApplicationController 
+  before_action :already_reviewed, only: [:new]
+  
   def index 
      
   end
    
   def new
-    # binding.pry
     @recipe = Recipe.find(params[:recipe_id])
     @review = Review.new 
   end
    
   def create 
-    binding.pry
     @review = Review.new(review_params)
     @review.chef = current_user
     @review.recipe_id = params[:recipe_id]
@@ -25,6 +25,8 @@ class ReviewsController < ApplicationController
   end
   
   def edit 
+    @review = Review.find(params[:id])
+    @recipe = @review.recipe
   end
    
   def show 
@@ -39,5 +41,13 @@ class ReviewsController < ApplicationController
   private 
     def review_params
       params.require(:review).permit(:title, :body)
+    end
+    
+    def already_reviewed
+      review = Review.where('recipe_id = ? AND chef_id = ?', params[:recipe_id], current_user.id).first
+      if review 
+        flash[:warning] = "You have already reviewed this recipe. You can edit your recipe below."
+        redirect_to edit_review_path(review)
+      end
     end
 end

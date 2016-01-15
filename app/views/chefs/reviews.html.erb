@@ -1,0 +1,12 @@
+<%= render 'shared/page_title', title: "Chef: " + @chef.chefname %>
+
+<ul class="nav nav-tabs">
+  <li>
+    <%= link_to "Recipes", chef_path(@chef) %>
+  </li>
+  <li class="active">
+    <%= link_to "Reviews", reviews_chef_path %>
+  </li>
+</ul>
+
+<%= render "shared/reviews", { reviews: @reviews } %>

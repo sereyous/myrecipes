@@ -1,0 +1,21 @@
+<h3>Reviewing <%= @recipe.name %> <small><i>by <%= @recipe.chef.chefname %></i></small></h3>
+
+<%= form_for @review, url: {action: @review.new_record? ? "create" : "edit" } do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  
+  <%= f.label :body %>
+  <%= f.text_area :body, rows: '15' %>
+  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-8">
+      <div class="row pull-right">
+        <div class="col-md-12">
+          <%= f.submit(@review.new_record? ? 'Submit Review' : 'Update Review', class: 'btn btn-primary') %>
+          <%= link_to("Cancel", recipe_path(@review.recipe), class: 'btn btn-danger') %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

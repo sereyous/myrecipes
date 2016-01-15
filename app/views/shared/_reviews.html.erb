@@ -1,0 +1,7 @@
+<% reviews.each do |rev| %>
+  <div class='recipe-review'>
+    <h4><%= rev.title %></h4>
+    <span>By <%= link_to rev.chef == current_user ? 'You' : rev.chef.chefname, chef_path(rev.chef) %> on <%= rev.created_at.strftime('%B %d, %Y') %></span>
+    <p><%= rev.body %></p>
+  </div>
+<% end %> 

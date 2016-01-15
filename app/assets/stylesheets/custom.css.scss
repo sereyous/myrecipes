@@ -54,8 +54,6 @@ h1,h2,h3 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
 }
 
 h2 {
@@ -73,6 +71,10 @@ h2 {
   p {
     padding-top: 7px;
   }
+}
+
+.recipe-summary {
+  margin-top: 0;
 }
 
 .chef_info {
@@ -120,5 +122,11 @@ span.picture {
   }
   span {
     font-size: .9em;
+  }
+}
+
+.edit_review {
+  a, input[type="submit"] {
+    width: auto;
   }
 }
